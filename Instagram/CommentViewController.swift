@@ -19,7 +19,9 @@ class CommentViewController: UIViewController {
         
         SVProgressHUD.show()
         
-        let addComment = postData.name! + ":" +  commentTextField.text!
+        let name = Auth.auth().currentUser?.displayName
+        
+        let addComment = name! + ":" +  commentTextField.text!
         let updateValue: FieldValue
         updateValue = FieldValue.arrayUnion([addComment])
         // コメントの保存場所指定
