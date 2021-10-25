@@ -22,10 +22,13 @@ class PostViewContoroller: UIViewController {
         // 画像と投稿データの保存場所を定義する
         let postRef = Firestore.firestore().collection(Const.PostPath).document()
         let imageRef = Storage.storage().reference().child(Const.ImagePath).child(postRef.documentID + ".jpg")
+        
+
         // HUDで投稿処理中の表示を開始
         SVProgressHUD.show()
         // Storageに画像をアップロードする
         let metadata = StorageMetadata()
+        
         metadata.contentType = "image/jpeg"
         imageRef.putData(imageData!, metadata: metadata) { (metadata, error) in
             if error != nil {
